@@ -1,14 +1,16 @@
 package solmin;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-//import java.util.Hashtable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -377,8 +379,6 @@ public class SingnIn_Up {
 			}
 		});
 		
-
-		
 		
 
 		
@@ -387,25 +387,46 @@ public class SingnIn_Up {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//Hashtable loginUsers = new Hashtable();
-		String t_SName=T_SName.getText();
-		String t_SId=T_SId.getText();
-		char[] t_Password=PF_SPassword.getPassword();
+		DBsignup dao = new DBsignup();
+		
+			String t_SName=T_SName.getText();
+			String t_SId=T_SId.getText();
+			String t_Password=PF_SPassword.getText();
+				
+			String DBConnection = "INSERT members VALUES("+ t_SName + 
+					", '" + t_SId + "'," + t_Password + "')";
 			
-		String DBConnection = "INSERT members VALUES("+ t_SName + 
-				", '" + t_SId + "'," + t_Password + "')";
-
 			
-		DBsignup.createCustomer(t_SName, t_SId, t_Password);
-		JOptionPane.showMessageDialog(null, "회원가입 되었습니다. 로그인 해주세요.");
-		SingnIn_Up s1=new SingnIn_Up();
-		SingnIn_Up.main(null);
-		frame.setVisible(true);
-			
-		}
+//			bnt_DoubleCheck.addActionListener(new ActionListener() {
+//				
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					DBsignup dao =new DBsignup();
+//					Object ob = e.getSource();
+//					if(dao.getByCheck(T_SId.getText())) {
+//						messageBox(this, T_SId.getText()+"는 사용가능합니다.");  
+//		              }else{ //중복이다.
+//		                  messageBox(this,T_SId.getText()+"는 중복입니다.");
+//		                 
+//		                  T_SId.setText("");//text박스지우기
+//		                  T_SId.requestFocus();//커서놓기
+//					}
+//					
+//				}
+//				
+//				  public static void messageBox(Object obj , String message){
+//				        JOptionPane.showMessageDialog( (Component)obj , message);
+//				    }
+//			});
+	
+				
+			DBsignup.createCustomer(t_SName, t_SId, t_Password);
+			JOptionPane.showMessageDialog(null, "회원가입 되었습니다. 로그인 해주세요.");
+			SingnIn_Up s1=new SingnIn_Up();
+			SingnIn_Up.main(null);
+			frame.setVisible(true);
+	}
+	
 	});
-		
-		
-		
 	}
 }
