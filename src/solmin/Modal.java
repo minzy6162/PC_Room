@@ -3,7 +3,9 @@ package solmin;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +19,7 @@ import database.DBTime;
 public class Modal extends JDialog {
 	public Modal(Window parent) {
 		super(parent, "결재 창", ModalityType.APPLICATION_MODAL);
-		
+		setResizable(false);//창 크기 고정
 		setSize(600, 500);
 		setLayout(null);
 		

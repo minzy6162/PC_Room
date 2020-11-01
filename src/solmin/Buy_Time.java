@@ -1,4 +1,5 @@
 package solmin;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -21,6 +22,7 @@ public class Buy_Time {
 	private final JPanel panel = new JPanel();
 	JButton []seat = new JButton[16];
 	JLabel [] l_seat = new JLabel[16];
+	JButton food = new JButton();
 
 	/**
 	 * Launch the application.
@@ -47,7 +49,7 @@ public class Buy_Time {
 
 	/**
 	 * Initialize the contents of the frame.
-	 */
+	 */	
 	private void initialize() {
 		frame = new JFrame("좌석");
 		frame.setBounds(100, 100, 1600, 1000);
@@ -134,15 +136,20 @@ public class Buy_Time {
 	            
 	        });
 		}
-
-
 		
-			
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 1600, 1000);
-		frame.getContentPane().add(panel_1);
-		
-		
+		Button food = new Button("음식");
+		food.setFont(new Font("굴림", Font.BOLD, 40));
+		food.setBounds(0, 0, 228, 73);
+		panel.add(food);
+		food.addActionListener(new ActionListener() {
+            // 만들어진 버튼 "새 창 띄우기"에 버튼이 눌러지면 발생하는 행동을 정의
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FoodExam m = new FoodExam();
+               // m.setVisible(true);
+            }
+            
+        });
 		
 		
 	}
