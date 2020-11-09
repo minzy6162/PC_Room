@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import database.DBTime;
 import database.DBsignup;
 
 public class Buy_Time {
 
 	private JFrame frame;
 	private final JPanel panel = new JPanel();
+	private int i = 0;
 	JButton []seat = new JButton[16];
 	JLabel [] l_seat = new JLabel[16];
 	JButton food = new JButton();
@@ -76,12 +78,14 @@ public class Buy_Time {
 			seat[i].add(l_seat[i]);
 			panel.add(seat[i]);
 			
+			
 			seat[i].addActionListener(new ActionListener() {
 	            // 만들어진 버튼 "새 창 띄우기"에 버튼이 눌러지면 발생하는 행동을 정의
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	                Modal m = new Modal(frame);
 	                m.setVisible(true);
+	                
 	            }
 	            
 	        });
@@ -126,31 +130,56 @@ public class Buy_Time {
 			seat[i].add(l_seat[i]);
 			panel.add(seat[i]);
 			
+			
 			seat[i].addActionListener(new ActionListener() {
 	            // 만들어진 버튼 "새 창 띄우기"에 버튼이 눌러지면 발생하는 행동을 정의
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	                Modal m = new Modal(frame);
 	                m.setVisible(true);
+	                
 	            }
 	            
 	        });
+
+			
 		}
 		
 		Button food = new Button("음식");
 		food.setFont(new Font("굴림", Font.BOLD, 40));
 		food.setBounds(0, 0, 228, 73);
 		panel.add(food);
+		
+		
 		food.addActionListener(new ActionListener() {
             // 만들어진 버튼 "새 창 띄우기"에 버튼이 눌러지면 발생하는 행동을 정의
             @Override
             public void actionPerformed(ActionEvent e) {
                 FoodExam m = new FoodExam();
-               // m.setVisible(true);
+                m.setVisible(true);
+                
             }
             
         });
+	
 		
+		public void actionPerformed(ActionEvent e) {
+			Object obj = e.getSource();
+			if((JButton)obj == seat[i]) {{
+					seat[i].setEnabled(false);
+					seat[i].setBackground(Color.GRAY);
+				}
+			}
+		}
+		
+		
+		
+	}
+	
+	
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
 		
 	}
 }

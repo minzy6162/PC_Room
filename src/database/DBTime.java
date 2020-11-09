@@ -1,9 +1,14 @@
 package database;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.JTextField;
+
+import solmin.member;
 
 //회원가입을 위한 db연동
 public class DBTime {
@@ -70,5 +75,67 @@ public class DBTime {
 		}
 	}
 	
+	public member getmember(int time) {
+		member m = new member();
+		
+        Connection conn = null;       //연결
+        PreparedStatement ps = null; //명령
+        ResultSet rs = null;         //결과
+       
+        try {
+           
+            conn = getConn();
+            String sql = "select * from member where id=?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, time);
+           
+            rs = ps.executeQuery();
+           
+            if(rs.next()){
+                m.settime(rs.getString("job"));
+               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }      
+       
+        return m;    
+    }
+	
+	public Vector getTimeList() {
+
+        Vector data = new Vector();  //Jtable에 값을 쉽게 넣는 방법 1. 2차원배열   2. Vector 에 vector추가
+       
+           
+        Connection conn = null;       //연결
+        PreparedStatement ps = null; //명령
+        ResultSet rs = null;         //결과
+       
+        try{
+           
+            conn = getConn();
+            String sql = "select * from member order by name asc";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+           
+            while(rs.next()){
+                Integer time = rs.getInt("time");
+               
+                Vector row = new Vector();
+                row.add(time);
+               
+                data.add(row);             
+            }//while
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return data;
+	}
+	private Connection getConn() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
+
 
